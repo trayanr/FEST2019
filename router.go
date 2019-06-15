@@ -6,9 +6,10 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/trayanr/FEST2019/controller"
 	"net/http"
+	"os"
 )
 
-const port = 3000
+var port = os.Getenv("PORT")
 
 func routes(r *mux.Router) {
 
@@ -29,8 +30,8 @@ func main() {
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
 
 	http.Handle("/", r)
-	fmt.Printf("listening on localhost:%d/ \n", port)
-	err := http.ListenAndServe(fmt.Sprintf("localhost:%d", port), nil)
+	fmt.Printf("listening on localhost:%s/ \n", port)
+	err := http.ListenAndServe(fmt.Sprintf("localhost:%s", port), nil)
 	if err != nil {
 		log.Print(err.Error())
 	}
