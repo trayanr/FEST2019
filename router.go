@@ -26,6 +26,7 @@ func routes(r *mux.Router) {
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
 	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
 	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
+	addHandler(r, "/api/register", controllers.Register).Methods("POST")
 
 }
 

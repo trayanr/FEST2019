@@ -34,6 +34,7 @@ func GetProfile(w http.ResponseWriter, r *http.Request) {
 func GetAwards(w http.ResponseWriter, r *http.Request) {
 	renderer := R.HTML("awards.html")
 	renderer.Render(w, map[string]interface{}{})
+
 }
 
 //GetContests returns страницата със всички състезания
