@@ -13,7 +13,7 @@ import (
 
 //GetLogin returns welcome page
 func GetWelcome(w http.ResponseWriter, r *http.Request) {
-	renderer := R.HTML("welcome.html")
+	renderer := R.HTML("welcome.html", "layouts/main.html")
 	renderer.Render(w, map[string]interface{}{})
 }
 
@@ -23,11 +23,18 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	renderer.Render(w, map[string]interface{}{})
 }
 
+//GetLogin returns home page (на логнат потребител)
+func GetProfile(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("profile.html")
+	yo := renderer.Render(w, map[string]interface{}{})
+	fmt.Println(yo.Error())
+}
+
 func GetForThisDay(ds DataSource, token *oauth2.Token) {
 	now := time.Now()
 	yesterday := time.Now().Add(-24*time.Hour + time.Minute)
 	// fmt.Printf("%+v\n", ds)
-	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/dataSources/", ds.DataStreamName, "/datasets/", yesterday.UnixNano(), "-", now.UnixNano())
+	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=", yesterday.Format("2006-01-02T15:04:05Z"), "&endTime=", now.Format("2006-01-02T15:04:05Z"))
 	// fmt.Println(url)
 	conf := models.GetConfig()
 	cl := conf.Client(oauth2.NoContext, token)
