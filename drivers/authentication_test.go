@@ -7,6 +7,7 @@ import (
 
 	"github.com/gchaincl/dotsql"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/trayanr/FEST2019/models"
 )
 
 func TestSetUp(t *testing.T) {
@@ -37,7 +38,7 @@ func TestGetUserByCredentials(t *testing.T) {
 }
 
 func TestInster(t *testing.T) {
-	u1 := User{Username: "trayan", Email: "asdasd", Password: "r"}
+	u1 := models.User{Username: "trayan", Email: "asdasd", Password: "r"}
 	err := InsertUser(u1)
 	fmt.Println(err)
 }
