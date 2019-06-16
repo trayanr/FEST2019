@@ -1,17 +1,26 @@
 package models
 
 type Points struct {
-	ID       int
-	Value    float64
-	UserId   int
-	Level    int
+	ID     int
+	Value  float64
+	UserId int
+	Level  int
 }
 
 var types = map[int]float64{
-	7: 1,
-	8: 2.5,
-	1: 1.8,
+	7:  1,
+	8:  2.5,
+	1:  1.8,
 	82: 3,
+}
+
+var levels = map[int]float64{
+	0: 0,
+	1: 100,
+	2: 300,
+	3: 900,
+	4: 2700,
+	5: 8100,
 }
 
 func (p *Points) Calculate(activityType int, activityDuration uint) {
@@ -25,7 +34,13 @@ func (p *Points) Calculate(activityType int, activityDuration uint) {
 		points = multiplier
 	}
 
-	p.Value = points
-}
+	p.Value += points
 
-//TODO::da pazim posledoto dobavqne na to4ki
+	//Смята левала
+	for i := 1; i <= len(levels); i++ {
+		if p.Value < levels[i] && p.Value > levels[i-1] {
+			p.Level = i
+		}
+	}
+
+}
