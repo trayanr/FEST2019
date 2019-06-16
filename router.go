@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 
+	"net/http"
+	"os"
+
 	"github.com/gorilla/mux"
 	"github.com/rs/zerolog/log"
 	"github.com/trayanr/FEST2019/controller"
-	"net/http"
-	"os"
 )
 
 var port = os.Getenv("PORT")
@@ -20,6 +21,7 @@ func routes(r *mux.Router) {
 	addHandler(r, "/home", controllers.GetHome).Methods("GET")
 	addHandler(r, "/profile", controllers.GetProfile).Methods("GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
+	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
 	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
 
 }
@@ -44,4 +46,9 @@ func main() {
 
 func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route {
 	return r.HandleFunc(path, handler) //.Host(conf.Subdomain + "." + conf.Host)
+}
+
+func startTimer() {
+	// timer1 := time.
+
 }
