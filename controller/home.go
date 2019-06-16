@@ -13,6 +13,7 @@ import (
 
 //GetLogin returns welcome page
 func GetWelcome(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("kolioEGEi")
 	renderer := R.HTML("welcome.html")
 	renderer.Render(w, map[string]interface{}{})
 }
@@ -27,7 +28,7 @@ func GetForThisDay(ds DataSource, token *oauth2.Token) {
 	now := time.Now()
 	yesterday := time.Now().Add(-24*time.Hour + time.Minute)
 	// fmt.Printf("%+v\n", ds)
-	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/dataSources/", ds.DataStreamName, "/datasets/", yesterday.UnixNano(), "-", now.UnixNano())
+	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=", yesterday.UnixNano(), "&endTime=", now.UnixNano())
 	// fmt.Println(url)
 	conf := models.GetConfig()
 	cl := conf.Client(oauth2.NoContext, token)
