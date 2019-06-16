@@ -34,11 +34,11 @@ new Vue({
                             }]
                         }
                     }
-                })
+                });
 
             //За count down-a
             $('.countdown').FlipClock({
-              
+
             });
 
         },100);

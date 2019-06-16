@@ -15,7 +15,8 @@ func routes(r *mux.Router) {
 
 	//ROUTE-ОВЕТЕ СЕ АДДВАТ ТУК :)
 
-	addHandler(r, "/", controllers.GetHome).Methods("GET")
+	addHandler(r, "/", controllers.GetWelcome).Methods("GET")
+	addHandler(r, "/home", controllers.GetHome).Methods("GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
 
 }
