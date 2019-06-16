@@ -25,9 +25,9 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 
 func GetForThisDay(ds DataSource, token *oauth2.Token) {
 	now := time.Now()
-	// yesterday := time.Now().Add(-24*time.Hour + time.Minute)
+	yesterday := time.Now().Add(-24*time.Hour + time.Minute)
 	// fmt.Printf("%+v\n", ds)
-	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/dataSources/", ds.DataStreamName, "/datasets/", 0, "-", now.UnixNano())
+	url := fmt.Sprint("https://www.googleapis.com/fitness/v1/users/me/dataSources/", ds.DataStreamName, "/datasets/", yesterday.UnixNano(), "-", now.UnixNano())
 	// fmt.Println(url)
 	conf := models.GetConfig()
 	cl := conf.Client(oauth2.NoContext, token)
