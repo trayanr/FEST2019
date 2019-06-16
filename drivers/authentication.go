@@ -33,6 +33,10 @@ func GetUserByCredentials(username, password string) (models.User, error) {
 	for row.Next() {
 		user := models.User{}
 		err = row.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode, &user.Level, &user.Points, &user.LastChecked)
+		fmt.Println("--PASS--")
+		fmt.Println(username)
+		fmt.Println(password)
+		fmt.Println(user.Password)
 		ok, err := argon2custom.ComparePasswordAndHash(password, user.Password)
 		fmt.Println(ok, err)
 		if ok {
