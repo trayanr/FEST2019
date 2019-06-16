@@ -17,6 +17,7 @@ func routes(r *mux.Router) {
 
 	addHandler(r, "/", controllers.GetWelcome).Methods("GET")
 	addHandler(r, "/home", controllers.GetHome).Methods("GET")
+	addHandler(r, "/profile", controllers.GetProfile).Methods("GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
 
 }

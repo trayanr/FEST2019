@@ -1,0 +1,45 @@
+<h4 class="center">ПРОФИЛ</h4>
+
+        <div class="row" id="app">
+            <div class="col s2">
+                <h5> Тегло:  <span>{{weight}}кг</span></h5>
+            </div>
+            <div class="col s10">
+                <p class="range-field">
+                    <input v-model="weight" type="range"  min="30" max="250" />
+                </p>
+            </div>
+
+            <div class="col s2">
+                <h5> Ръст:  <span>{{height}}см</span></h5>
+            </div>
+            <div class="col s10">
+                <p class="range-field">
+                    <input v-model="height" type="range" id="test5" min="0" max="100" />
+                </p>
+            </div>
+
+            <div class="col s2">
+                <h5> Пол </h5>
+            </div>
+            <div class="col s10">
+                <br>
+                <label>
+                    <input v-model="gender" value="female" type="radio" />
+                    <span><i class="fas fa-female pink-text"></i> ЖЕНА </span>
+                </label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label>
+                    <input v-model="gender" value="male" type="radio" />
+                    <span><i class="fas fa-male blue-text"></i> МЪЖ </span>
+                </label>
+            </div>
+
+        </div>
+
+<% contentFor("header") { %>
+<% } %>
+
+<% contentFor("vueComponents") { %>
+<script src="/static/components/profile.js"></script>
+<% } %>
