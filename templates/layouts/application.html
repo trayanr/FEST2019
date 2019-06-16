@@ -9,6 +9,9 @@
             // за инициализиране на sidebar-a
             let  elems = document.querySelectorAll('#mainSideBar');
             M.Sidenav.init(elems, {});
+            //За dropdown-a, който е излиза под името на потребителя
+            elems = document.querySelectorAll('#profileDropDownTrigger');
+            var DropDownInstances = M.Dropdown.init(elems, {hover:true, coverTrigger:false});
         });
     </script>
 

@@ -1,6 +1,12 @@
 new Vue({
     el: "#app",
-    data: {},
+    data: function () {
+        return {
+            username: '',
+            password: '',
+            showError: false,
+        }
+    },
     created() {
         setTimeout(() => {
             //За диаграмата
@@ -37,11 +43,36 @@ new Vue({
                 });
 
             //За count down-a
-            $('.countdown').FlipClock({
-
+            let clock = $('.countdown').FlipClock(moment().endOf('day').toDate(), {
+                countdown:true,
+                setFaceValue(){
+                    return 200
+                   // return
+                }
             });
+
+            clock.setFaceValue(300)
+
 
         },100);
 
+    },
+    methods: {
+        login(){
+            var username = this.username
+            var password = this.password
+            var vue = this
+            var d = JSON.stringify({
+                username: username,
+                password: password,
+            })
+            axios.post('/api/login', d)
+            .then(function (response) {
+                window.location.href = "/home"
+            })
+            .catch(function (error) {
+                vue.showError = true
+            })
+        }
     }
 });

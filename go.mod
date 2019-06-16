@@ -1,7 +1,3 @@
-module github.com/trayanr/FEST2019
-
-go 1.12
-
 require (
 	github.com/0xAX/notificator v0.0.0-20181105090803-d81462e38c21 // indirect
 	github.com/acroca/go-symbols v0.1.1 // indirect
@@ -36,3 +32,5 @@ require (
 	gopkg.in/urfave/cli.v1 v1.20.0 // indirect
 	sourcegraph.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518 // indirect
 )
+
+module github.com/trayanr/FEST2019
