@@ -32,7 +32,7 @@ func GetUserByCredentials(username, password string) (models.User, error) {
 	// users := []models.User{}
 	for row.Next() {
 		user := models.User{}
-		err = row.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode)
+		err = row.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode, &user.Level, &user.Points, &user.LastChecked)
 		ok, err := argon2custom.ComparePasswordAndHash(password, user.Password)
 		fmt.Println(ok, err)
 		if ok {
@@ -93,8 +93,10 @@ func GetUserByID(id int) (models.User, error) {
 	}
 	rows, err := dot.Query(db, "get-user-by-id", id)
 	user := models.User{}
+	fmt.Println(rows)
 	for rows.Next() {
-		rows.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode)
+		err := rows.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode, &user.Level, &user.Points, &user.LastChecked)
+		fmt.Println(user, id, err)
 	}
 	return user, nil
 }

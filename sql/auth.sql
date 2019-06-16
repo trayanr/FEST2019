@@ -4,13 +4,13 @@ CREATE TABLE users (
     username VARCHAR(255),
     password VARCHAR(255),
     oAuthCode VARCHAR(255),
-    points INTEGER,
     level INTEGER,
-    lastChecked BIGINT
+    points INTEGER,
+    lastChecked INTEGER
 );
 
 -- name: create-user
-INSERT INTO users (username, email, password) VALUES (?, ?, ?);
+INSERT INTO users (username, password) VALUES (?, ?);
 
 -- name: get-user-by-username
 SELECT * FROM users

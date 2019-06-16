@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	// "github.com/trayanr/FEST2019/models"
 	"github.com/gorilla/mux"
 	controllers "github.com/trayanr/FEST2019/controller"
 )
@@ -27,10 +28,14 @@ func routes(r *mux.Router) {
 	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
 	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
 	addHandler(r, "/api/register", controllers.Register).Methods("POST")
+	addHandler(r, "/api/profile", controllers.GetProfileData).Methods("GET")
 
 }
 
 func main() {
+	// models.PointsTest()
+	// testTime := time.Unix(0, 1560634000000*int64(time.Millisecond))
+	// log.Println(testTime.Format(("2006-01-02T15:04:05Z")))
 
 	r := mux.NewRouter()
 
@@ -74,8 +79,4 @@ func setInterval(someFunc func(), milliseconds int, async bool) chan bool {
 		}
 	}()
 	return clear
-}
-
-func init() {
-	// get level, add points to user and update
 }
