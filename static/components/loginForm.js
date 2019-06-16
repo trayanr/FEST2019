@@ -3,6 +3,7 @@ new Vue({
     data: {},
     created() {
         setTimeout(() => {
+            //За диаграмата
             new Chart(document.getElementById('myChart'),
                 {
                     type: 'bar',
@@ -34,6 +35,12 @@ new Vue({
                         }
                     }
                 })
+
+            //За count down-a
+            $('.countdown').FlipClock({
+              
+            });
+
         },100);
 
     }
