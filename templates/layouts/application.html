@@ -1,0 +1,16 @@
+<!-- Основен Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+    <%= partial("includes/header.html") %>
+    <%= partial("flash.html") %>
+</head>
+<body class="blue-grey lighten-5">
+<%= partial("includes/sidenav") %>
+<div class="container" id="app">
+    <%= yield %>
+</div>
+
+<%= javascriptTag("application.js") %>
+</body>
+</html>
