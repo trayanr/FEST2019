@@ -1,0 +1,47 @@
+<h2 class="center">Надпревари <i class="fas fa-chart-bar"></i></h2>
+<div id="app">
+    <div class="input-field col s12" >
+        <select v-model="show">
+            <option value="all">Всички</option>
+            <option value="day">Дневни</option>
+            <option value="week">Седмични</option>
+            <option value="month">Месечни</option>
+            <option value="year">Годишни</option>
+        </select>
+        <label>Тип състезание</label>
+    </div>
+    <div class="row">
+        <div class="col s5 white z-depth-1" v-show="show=='all' || show=='day'">
+            <h5 class="center">Дневна класация</h5>
+            <canvas id="dayChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col s2"></div>
+        <div class="col s5 white z-depth-1" v-show="show=='all' || show=='month'">
+            <h5 class="center">Месечна класация</h5>
+            <canvas id="monthChart" width="400" height="400"></canvas>
+        </div>
+
+        <div class="col s12" style="margin-bottom: 50px"></div>
+
+        <div class="col s5 white z-depth-1" v-show="show=='all' || show=='week'">
+            <h5 class="center">Месечна класация</h5>
+            <canvas id="weekChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col s2"></div>
+        <div class="col s5 white z-depth-1" v-show="show=='all' || show=='year'">
+            <h5 class="center">Месечна класация</h5>
+            <canvas id="yearChart" width="400" height="400"></canvas>
+        </div>
+
+    </div>
+</div>
+
+
+<% contentFor("header") { %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js  "></script>
+<% } %>
+
+<% contentFor("vueComponents") { %>
+<script src="/static/components/contests.js"></script>
+<% } %>
+
