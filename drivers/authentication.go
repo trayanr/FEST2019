@@ -10,28 +10,29 @@ import (
 )
 
 func GetUserByCredentials(username, password string) (models.User, error) {
-	db, err := OpenSQL()
-	if err != nil {
-		log.Println(errOpenSQl, ":", err)
-		return models.User{}, errOpenSQl
-	}
-	dot, err := dotsql.LoadFromFile("./sql/auth.sql")
-	if err != nil {
-		log.Println(errLoadDotSQLFile, ":", err)
-		return models.User{}, errLoadDotSQLFile
-	}
-	row, err := dot.QueryRow(db, "get-user-by-username-passwordhash", username, password)
-	if err != nil {
-		log.Println(errSQL, ":", err)
-		return models.User{}, errSQL
-	}
-	user := models.User{}
-	err = row.Scan(&user.ID, &user.Username, &user.Email, &user.Password)
-	if err != nil {
-		//handle err
-		return models.User{}, err
-	}
-	return user, nil
+	// db, err := OpenSQL()
+	// if err != nil {
+	// 	log.Println(errOpenSQl, ":", err)
+	// 	return models.User{}, errOpenSQl
+	// }
+	// dot, err := dotsql.LoadFromFile("./sql/auth.sql")
+	// if err != nil {
+	// 	log.Println(errLoadDotSQLFile, ":", err)
+	// 	return models.User{}, errLoadDotSQLFile
+	// }
+	// row, err := dot.QueryRow(db, "get-user-by-username-passwordhash", username, password)
+	// if err != nil {
+	// 	log.Println(errSQL, ":", err)
+	// 	return models.User{}, errSQL
+	// }
+	// user := models.User{}
+	// err = row.Scan(&user.ID, &user.Username, &user.Email, &user.Password)
+	// if err != nil {
+	// 	//handle err
+	// 	return models.User{}, err
+	// }
+	// return user, nil
+	return models.User{}, nil
 }
 
 func InsertUser(user models.User) error {

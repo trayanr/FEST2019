@@ -3,10 +3,17 @@ module github.com/trayanr/FEST2019
 go 1.12
 
 require (
-	github.com/0xAX/notificator v0.0.0-20181105090803-d81462e38c21 // indirect
-	github.com/codegangsta/envy v0.0.0-20141216192214-4b78388c8ce4 // indirect
-	github.com/gchaincl/dotsql v0.1.0 // indirect
-	github.com/go-sql-driver/mysql v1.4.1 // indirect
-	github.com/mattn/go-shellwords v1.0.5 // indirect
-	gopkg.in/urfave/cli.v1 v1.20.0 // indirect
+	github.com/gchaincl/dotsql v0.1.0
+	github.com/go-sql-driver/mysql v1.4.1
+	github.com/gobuffalo/buffalo v0.14.6
+	github.com/gobuffalo/packr v1.26.0
+	github.com/gorilla/mux v1.7.2
+	github.com/gorilla/securecookie v1.1.1
+	github.com/gorilla/sessions v1.1.3
+	github.com/jackc/pgx v3.3.0+incompatible // indirect
+	github.com/kachamaka/argon2custom v0.0.0-20190614193143-cb513c75fec8
+	github.com/markbates/going v1.0.3 // indirect
+	github.com/rs/zerolog v1.14.3
+	github.com/spf13/afero v1.2.1 // indirect
+	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 )
