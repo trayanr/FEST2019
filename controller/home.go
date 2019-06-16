@@ -13,15 +13,15 @@ import (
 
 //GetLogin returns welcome page
 func GetWelcome(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("kolioEGEi")
-	renderer := R.HTML("welcome.html")
+	renderer := R.HTML("welcome.html", "layouts/main.html")
 	renderer.Render(w, map[string]interface{}{})
 }
 
 //GetLogin returns home page (на логнат потребител)
 func GetHome(w http.ResponseWriter, r *http.Request) {
 	renderer := R.HTML("home.html")
-	renderer.Render(w, map[string]interface{}{})
+	yo := renderer.Render(w, map[string]interface{}{})
+	fmt.Println(yo.Error())
 }
 
 func GetForThisDay(ds DataSource, token *oauth2.Token) {
