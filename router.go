@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/gorilla/mux"
 	"github.com/rs/zerolog/log"
 	"github.com/trayanr/FEST2019/controller"
@@ -19,6 +20,7 @@ func routes(r *mux.Router) {
 	addHandler(r, "/home", controllers.GetHome).Methods("GET")
 	addHandler(r, "/profile", controllers.GetProfile).Methods("GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
+	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
 
 }
 
