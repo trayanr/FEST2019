@@ -163,6 +163,7 @@ func GetProfileData(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(406)
 	}
 	id := session.Values["id"].(int)
+	fmt.Println(id)
 	user, err := drivers.GetUserByID(id)
 	if err != nil {
 		w.WriteHeader(406)
