@@ -44,18 +44,37 @@ func main() {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	log
-	startTimer()
 }
 
 func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route {
 	return r.HandleFunc(path, handler) //.Host(conf.Subdomain + "." + conf.Host)
 }
 
-func startTimer() {
-	log.Println("test")
-	timer := time.NewTicker(time.Second * 40)
-	for v := range timer.C {
-		log.Println(v)
-	}
+func setInterval(someFunc func(), milliseconds int, async bool) chan bool {
+
+	interval := time.Duration(24) * time.Second
+	ticker := time.NewTicker(interval)
+	clear := make(chan bool)
+	go func() {
+		for {
+
+			select {
+			case <-ticker.C:
+				if async {
+					go someFunc()
+				} else {
+					someFunc()
+				}
+			case <-clear:
+				ticker.Stop()
+				return
+			}
+
+		}
+	}()
+	return clear
+}
+
+func init() {
+	// get level, add points to user and update
 }
