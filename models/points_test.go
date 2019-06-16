@@ -6,7 +6,7 @@ import (
 )
 
 func TestPoints(t *testing.T) {
-	sess, err := GetLastSession("4/agERWOUCHELUNVyJHpDeEUJnrLjsNwXvNmR0nCpz0cu0eebSxgpkKl2tOOxMnb6-qR-aP8C0HJZ4p3E0_wnEABo", 1560634000000)
+	sess, err := GetLastSession("4/agFXxyLx1qvjdUsxAFBsEHQ9WBHiuC_1y4bp48atic2tLCEZhEjipEAgEVyOkRhD5EeL3IBZwmqsRZnQ_p5xXl8", 1560630000000)
 	if err != nil {
 		t.Fatal(err)
 	}

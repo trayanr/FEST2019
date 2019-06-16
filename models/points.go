@@ -33,7 +33,10 @@ var levels = map[int]float64{
 }
 
 func (p *Points) Calculate(activityType int, activityDuration uint) {
-	var multiplier = types[activityType]
+	var multiplier, ok = types[activityType]
+	if !ok {
+		multiplier = 1.5
+	}
 	act := activityDuration / 100000
 	activityDuration = uint(act)
 	var points float64
@@ -54,7 +57,7 @@ func (p *Points) Calculate(activityType int, activityDuration uint) {
 func GetLastSession(authCode string, lastTimeMS int64) ([]Session, error) {
 	conf := GetConfig()
 
-	token, err := conf.Exchange(oauth2.NoContext, "4/agF3GSPirhE6cqJWPJdFRBNuWRf0JljRzs-hTDmXKK5IfZAIVe4X1K9LP7gXMxwkiEIrorF6kFo4uR6fVeDKA08")
+	token, err := conf.Exchange(oauth2.NoContext, authCode)
 	if err != nil {
 		log.Fatal(err)
 	}

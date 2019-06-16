@@ -4,9 +4,9 @@ CREATE TABLE users (
     username VARCHAR(255),
     password VARCHAR(255),
     oAuthCode VARCHAR(255) DEFAULT '',
-    level INTEGER,
-    points FLOAT,
-    lastChecked INTEGER
+    lvl INTEGER DEFAULT 0,
+    points FLOAT DEFAULT 0,
+    lastChecked INTEGER DEFAULT 0
 );
 
 -- name: create-user
@@ -25,7 +25,7 @@ WHERE id = ?
 
 
 -- name: set-lastChecked
-UPDATE users SET lastChecked = ? AND level = ? WHERE id = ?
+UPDATE users SET lastChecked = ? WHERE id = ?
 
 -- name: update-points
-UPDATE user SET points = ?  WHERE id = ?
+UPDATE users SET points = ? AND lvl = ?  WHERE id = ?
