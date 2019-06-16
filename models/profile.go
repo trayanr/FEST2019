@@ -13,10 +13,13 @@ var (
 )
 
 type User struct {
-	ID       int
-	Username string `json:"username"`
-	Email    string
-	Password string `json:"password"`
+	ID          int    `json:"id"`
+	Username    string `json:"username"`
+	Password    string `json:"password"`
+	OAuthCode   string
+	Level       int  `json:"level"`
+	Points      int  `json:"points"`
+	LastChecked uint `json:"lastChecked"`
 }
 
 func (u User) Validate() (errs []error, ok bool) {
@@ -27,10 +30,6 @@ func (u User) Validate() (errs []error, ok bool) {
 	}
 	if u.Password == "" {
 		errs = append(errs, errInvalidPassword)
-		ok = false
-	}
-	if u.Email == "" {
-		errs = append(errs, errInvalidEmail)
 		ok = false
 	}
 	return
