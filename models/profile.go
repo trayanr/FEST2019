@@ -17,9 +17,9 @@ type User struct {
 	Username    string `json:"username"`
 	Password    string `json:"password"`
 	OAuthCode   string
-	Level       int  `json:"level"`
-	Points      int  `json:"points"`
-	LastChecked uint `json:"lastChecked"`
+	Level       int     `json:"level"`
+	Points      float64 `json:"points"`
+	LastChecked uint    `json:"lastChecked"`
 }
 
 func (u User) Validate() (errs []error, ok bool) {

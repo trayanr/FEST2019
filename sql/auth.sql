@@ -3,9 +3,9 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     username VARCHAR(255),
     password VARCHAR(255),
-    oAuthCode VARCHAR(255),
+    oAuthCode VARCHAR(255) DEFAULT '',
     level INTEGER,
-    points INTEGER,
+    points FLOAT,
     lastChecked INTEGER
 );
 
@@ -23,4 +23,9 @@ UPDATE users SET oAuthCode = ? WHERE id = ?
 SELECT * FROM users
 WHERE id = ?
 
--- name: create-session-table
+
+-- name: set-lastChecked
+UPDATE users SET lastChecked = ? AND level = ? WHERE id = ?
+
+-- name: update-points
+UPDATE user SET points = ?  WHERE id = ?

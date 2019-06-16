@@ -1,16 +1,14 @@
 package models
 
 type Points struct {
-	ID       int
-	Value    float64
-	UserId   int
-	Level    int
+	Value float64
+	Level int
 }
 
 var types = map[int]float64{
-	7: 1,
-	8: 2.5,
-	1: 1.8,
+	7:  1,
+	8:  2.5,
+	1:  1.8,
 	82: 3,
 }
 
@@ -29,3 +27,8 @@ func (p *Points) Calculate(activityType int, activityDuration uint) {
 }
 
 //TODO::da pazim posledoto dobavqne na to4ki
+
+func GetLastSession(authCode string, lastTimeMS int) {
+	// conf := GetConfig()
+
+}

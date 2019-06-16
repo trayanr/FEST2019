@@ -98,5 +98,17 @@ func GetUserByID(id int) (models.User, error) {
 		err := rows.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode, &user.Level, &user.Points, &user.LastChecked)
 		fmt.Println(user, id, err)
 	}
+
+	_, err = dot.Exec(db, "set-lastChecked", session.endTIme)
+	if err != nil {
+		fmt.Println(err)
+	}
+	points := models.Points{
+		Value: user.Points,
+		Level: user.Level,
+	}
+	points.Calculate(session.ActivityType, session.end-session.start)
+	_, err = dot.Exec(db, "update-points", points.Value, points.Level, user.ID)
+
 	return user, nil
 }
