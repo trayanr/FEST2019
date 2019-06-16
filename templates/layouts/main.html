@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ivan</title>
+    <%= if(title) {%>
+    <title>{{title}}</title>
+    <%}else{%>
+    <title>PostBHealth</title>
+    <% } %>
+    <link rel="stylesheet" href="/static/materialize/css/materialize.min.css">
+    <script src="/static/materialize/js/materialize.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <%=contentOf("header")%>
 </head>
 <body>
-    <h4> <%= yield %></h4>
+    <div> <%= yield %></div>
+    <script src="/static/js/vue.js"></script>
+    <%=contentOf("vueComponents")%>
 </body>
 </html>

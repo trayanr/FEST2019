@@ -1,0 +1,93 @@
+
+
+
+<div class="background">
+    <div class="gradient"></div>
+</div>
+
+<main id="app">
+
+
+    <div class="pusher ">
+
+        <nav class="nav-wrapper white" style="padding-bottom: 125px">
+            <div  class="container">
+
+                <a style="margin-top: 20px" href="#" class="brand-logo blue-text text-darken-4">PostBHealth</a>
+
+                <div class="right">
+                    <div class="countdown" style="transform: scale(.65)"></div>
+                </div>
+
+            </div>
+        </nav>
+
+
+
+
+
+        </div>
+        <%= for (v) in between(1,10) { %>
+        <br>
+        <%}%>
+
+
+        <div class="row" id="app">
+
+            <div class="col s1"></div>
+            <div class="col s4">
+                <div class="white z-depth-2">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+            <div class="col s1"></div>
+
+
+            <div class="col s4">
+                <div class="white z-depth-2 row" >
+
+                    <h5 style="margin-top: 20px; margin-bottom: 20px" class="col s12 center">Влез във postBHealth</h5>
+
+                    <div class="input-field col s12">
+                        <input  id="username" type="text">
+                        <label for="username">Потребителско име</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input  id="password" type="password">
+                        <label for="password">Парола</label>
+                    </div>
+
+                    <div style="width: 98%; margin-left: 1%; margin-bottom: 10px; margin-top: 30px" class="col s12 btn blue">ВЛЕЗ</div>
+
+                </div>
+            </div>
+
+            <div class="col s1"></div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+</main>
+
+<% contentFor("header") { %>
+<link rel="stylesheet" href="/static/css/welcome.css">
+<link rel="stylesheet" href="/static/css/flipclock.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js  "></script>
+<script src="/static/js/flipclock.min.js"></script>
+<% } %>
+
+<% contentFor("vueComponents") { %>
+<script src="/static/components/loginForm.js"></script>
+<% } %>
+
+
+
+

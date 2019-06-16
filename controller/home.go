@@ -11,13 +11,16 @@ import (
 	"golang.org/x/oauth2"
 )
 
-//GetLogin returns login page
-func GetHome(w http.ResponseWriter, r *http.Request) {
-	renderer := R.HTML("login.html")
+//GetLogin returns welcome page
+func GetWelcome(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("welcome.html")
 	renderer.Render(w, map[string]interface{}{})
+}
 
-	url := GetConfigURL()
-	log.Println("config url", url.URL)
+//GetLogin returns home page (на логнат потребител)
+func GetHome(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("home.html")
+	renderer.Render(w, map[string]interface{}{})
 }
 
 func GetForThisDay(ds DataSource, token *oauth2.Token) {
