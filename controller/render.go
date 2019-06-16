@@ -11,7 +11,7 @@ var assetsBox = packr.NewBox("../templates")
 func init() {
 	R = render.New(render.Options{
 		// HTML layout to be used for all HTML requests:
-		HTMLLayout: "layouts/main.html",
+		HTMLLayout: "layouts/application.html",
 
 		// Box containing all of the templates:
 		TemplatesBox: packr.NewBox("../templates"),
