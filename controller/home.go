@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -14,39 +13,11 @@ import (
 
 //GetLogin returns login page
 func GetHome(w http.ResponseWriter, r *http.Request) {
-
 	renderer := R.HTML("login.html")
 	renderer.Render(w, map[string]interface{}{})
 
-	authCode := r.URL.Query().Get("code")
-	log.Println(authCode)
-
-	conf := models.GetConfig()
-
-	tok, err := conf.Exchange(oauth2.NoContext, authCode)
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Println("token", tok)
-
-	req, err := http.NewRequest("GET", "https://www.googleapis.com/fitness/v1/users/me/dataSources", nil)
-	log.Println(err)
-	req.Header.Set("Authorization", tok.AccessToken)
-	client := conf.Client(oauth2.NoContext, tok)
-
-	res, err := client.Do(req)
-	log.Println(err)
-	body, err := ioutil.ReadAll(res.Body)
-	dataSources := map[string][]DataSource{
-		"dataSource": []DataSource{},
-	}
-	err = json.Unmarshal(body, &dataSources)
-	ds := dataSources["dataSource"]
-	log.Println(err, len(ds))
-	fmt.Println(ds)
-	for _, d := range ds {
-		GetForThisDay(d, tok)
-	}
+	url := GetConfigURL()
+	log.Println("config url", url.URL)
 }
 
 func GetForThisDay(ds DataSource, token *oauth2.Token) {
@@ -99,4 +70,10 @@ type Device struct {
 	Version      string `json:"verison"`
 	Model        string `json:"model"`
 	Manufacturer string `json:"manufacturer"`
+}
+
+func init() {
+	conf := models.GetConfig()
+	url := conf.AuthCodeURL("state")
+	log.Println(url)
 }
