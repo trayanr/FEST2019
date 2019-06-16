@@ -53,3 +53,19 @@ func InsertUser(user models.User) error {
 	}
 	return nil
 }
+
+func SetUserAuthCode(authCode string, id int) error {
+	db, err := OpenSQL()
+	if err != nil {
+		return errOpenSQl
+	}
+	dot, err := dotsql.LoadFromFile("./sql/auth.sql")
+	if err != nil {
+		return errLoadDotSQLFile
+	}
+	_, err = dot.Exec(db, "set-user-auth", authCode, id)
+	if err != nil {
+		return errSQL
+	}
+	return nil
+}
