@@ -1,0 +1,62 @@
+<!-- Страничното меню -->
+<ul  class="sidenav   black white-text" id="mainSideBar">
+    <li>
+        <!-- Информация за потребителя -->
+        <div class="user-view" style="padding: 10px 10px 10px 10px">
+
+            <div class="background" style="  background-image: linear-gradient(to bottom right, #3f51b5, #c51162  );">
+            </div>
+
+            <div class="row left-align">
+                <div class="col s4 left-align">
+                    <!-- Аватар -->
+                    <a style="margin-top: 15px" class="circle responsive-img white">
+
+                        <img class="circle" src="https://www.shareicon.net/data/2016/09/01/822711_user_512x512.png" />
+
+                    </a>
+                </div>
+                <div class="col s8" id="profileDropDownTrigger" data-target='profileDropDown'>
+
+                    <!-- Име -->
+                    <a  class="btn-flat" >
+                        <span class="white-text name">Пешо</span>
+                    </a>
+                    <!-- Email -->
+                    <a><span class="white-text email">nikitvmaniak@gmail.com</span></a>
+
+
+                </div>
+            </div>
+
+
+            <!-- Hover меню, което се показва коато минем над името-->
+            <ul id='profileDropDown' class='dropdown-content' >
+                <li><a href="">профил</a></li>
+                <!--<li><a href="#!">настройки</a></li>-->
+                <li class="divider" tabindex="-1"></li>
+
+                <!--logout бутон-->
+                <form id="logout" method="POST" action="/api/log/out">
+                    <li onclick="$('#logout').submit()"><a>излез</a></li>
+                </form>
+
+            </ul>
+
+
+        </div>
+    </li>
+
+    <!-- Навигация -->
+    <li class="pink accent-3">
+        <a href="/yo/wtf" class="white-text"><i class="material-icons white-text">create_new_folder</i>Направи нов сайт</a>
+    </li>
+
+</ul>
+
+<!-- Бутон за отваряне на side bar-a -->
+<a  style="margin: 7px 7px;position: fixed" href="#" data-target="mainSideBar" class="sidenav-trigger btn-floating btn-large waves-effect waves-light pink accent-3">
+    <i class="material-icons">menu</i>
+</a>
+
+

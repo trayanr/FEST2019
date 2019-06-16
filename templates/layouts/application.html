@@ -3,11 +3,20 @@
 <html>
 <head>
     <%= partial("includes/header.html") %>
-    <%= partial("flash.html") %>
+    <!---за инициализиране на materialize компоненти--->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // за инициализиране на sidebar-a
+            let  elems = document.querySelectorAll('#mainSideBar');
+            M.Sidenav.init(elems, {});
+        });
+    </script>
+
+    <%= partial("includes/flash.html") %>
 </head>
 <body class="blue-grey lighten-5">
 <%= partial("includes/sidenav") %>
-<div class="container" id="app">
+<div class="container">
     <%= yield %>
 </div>
 

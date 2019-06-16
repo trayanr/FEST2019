@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <%= if(title) {%>
-    <title>{{title}}</title>
-    <%}else{%>
-    <title>PostBHealth</title>
-    <% } %>
-    <link rel="stylesheet" href="/static/materialize/css/materialize.min.css">
-    <script src="/static/materialize/js/materialize.min.js"></script>
-    <script src="/static/js/jquery.min.js"></script>
-    <%=contentOf("header")%>
+    <%= partial("includes/header.html") %>
 </head>
 <body>
     <div> <%= yield %></div>

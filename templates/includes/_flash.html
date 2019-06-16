@@ -1,0 +1,16 @@
+<%=if(flash){%>
+<script>
+    /* за flash съобщенията */
+    document.addEventListener("DOMContentLoaded", function(event) {
+        <%= for (k, messages) in flash { %>
+            <%= for (msg) in messages { %>
+                    M.toast({html: '<%=msg%>'})
+            <% } %>
+        <% } %>
+    })
+
+</script>
+
+<%}%>
+
+
