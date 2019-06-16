@@ -23,22 +23,20 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	body := models.User{}
 	decoder.Decode(&body)
 	user, err := drivers.GetUserByCredentials(body.Username, body.Password)
+
 	if err != nil {
-		//
 		log.Println("driver err", err)
 		w.WriteHeader(406)
 		return
 	}
 	session, err := store.Get(r, "Auth")
 	if err != nil {
-		//
 		log.Println("store err", err)
 		w.WriteHeader(406)
 		return
 	}
 	user, err = drivers.GetUserByCredentials(body.Username, body.Password)
 	if err != nil {
-		//
 		log.Println("session err", err)
 		w.WriteHeader(406)
 		return
@@ -51,7 +49,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(406)
 		return
 	}
-
+	w.WriteHeader(200)
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {

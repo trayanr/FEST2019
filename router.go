@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"time"
 
 	"net/http"
 	"os"
 
+	// "github.com/trayanr/FEST2019/models"
 	"github.com/gorilla/mux"
-	"github.com/rs/zerolog/log"
-	"github.com/trayanr/FEST2019/controller"
+	controllers "github.com/trayanr/FEST2019/controller"
 )
 
 var port = os.Getenv("PORT")
@@ -31,6 +33,9 @@ func routes(r *mux.Router) {
 }
 
 func main() {
+	// models.PointsTest()
+	// testTime := time.Unix(0, 1560634000000*int64(time.Millisecond))
+	// log.Println(testTime.Format(("2006-01-02T15:04:05Z")))
 
 	r := mux.NewRouter()
 
@@ -45,14 +50,33 @@ func main() {
 	if err != nil {
 		log.Print(err.Error())
 	}
-
 }
 
 func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route {
 	return r.HandleFunc(path, handler) //.Host(conf.Subdomain + "." + conf.Host)
 }
 
-func startTimer() {
-	// timer1 := time.
+func setInterval(someFunc func(), milliseconds int, async bool) chan bool {
 
+	interval := time.Duration(24) * time.Second
+	ticker := time.NewTicker(interval)
+	clear := make(chan bool)
+	go func() {
+		for {
+
+			select {
+			case <-ticker.C:
+				if async {
+					go someFunc()
+				} else {
+					someFunc()
+				}
+			case <-clear:
+				ticker.Stop()
+				return
+			}
+
+		}
+	}()
+	return clear
 }

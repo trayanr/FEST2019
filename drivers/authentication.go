@@ -33,6 +33,10 @@ func GetUserByCredentials(username, password string) (models.User, error) {
 	for row.Next() {
 		user := models.User{}
 		err = row.Scan(&user.ID, &user.Username, &user.Password, &user.OAuthCode, &user.Level, &user.Points, &user.LastChecked)
+		fmt.Println("--PASS--")
+		fmt.Println(username)
+		fmt.Println(password)
+		fmt.Println(user.Password)
 		ok, err := argon2custom.ComparePasswordAndHash(password, user.Password)
 		fmt.Println(ok, err)
 		if ok {
@@ -99,16 +103,16 @@ func GetUserByID(id int) (models.User, error) {
 		fmt.Println(user, id, err)
 	}
 
-	_, err = dot.Exec(db, "set-lastChecked", session.endTIme)
-	if err != nil {
-		fmt.Println(err)
-	}
-	points := models.Points{
-		Value: user.Points,
-		Level: user.Level,
-	}
-	points.Calculate(session.ActivityType, session.end-session.start)
-	_, err = dot.Exec(db, "update-points", points.Value, points.Level, user.ID)
+	// _, err = dot.Exec(db, "set-lastChecked", session.endTIme)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// points := models.Points{
+	// 	Value: user.Points,
+	// 	Level: user.Level,
+	// }
+	// points.Calculate(session.ActivityType, session.end-session.start)
+	// _, err = dot.Exec(db, "update-points", points.Value, points.Level, user.ID)
 
 	return user, nil
 }
