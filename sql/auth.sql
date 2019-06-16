@@ -3,7 +3,8 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
     email VARCHAR(255), 
-    password VARCHAR(255)
+    password VARCHAR(255),
+    oAuthCode VARCHAR(255)
 );
 
 -- name: create-user

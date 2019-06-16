@@ -1,6 +1,12 @@
 new Vue({
     el: "#app",
-    data: {},
+    data: function () {
+        return {
+            username: '',
+            password: '',
+            showError: false,
+        }
+    },
     created() {
         setTimeout(() => {
             //За диаграмата
@@ -50,5 +56,23 @@ new Vue({
 
         },100);
 
+    },
+    methods: {
+        login(){
+            var username = this.username
+            var password = this.password
+            var vue = this
+            var d = JSON.stringify({
+                username: username,
+                password: password,
+            })
+            axios.post('/api/login', d)
+            .then(function (response) {
+                window.location.href = "/home"
+            })
+            .catch(function (error) {
+                vue.showError = true
+            })
+        }
     }
 });
