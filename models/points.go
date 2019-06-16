@@ -25,6 +25,15 @@ var types = map[int]float64{
 	82: 3,
 }
 
+var levels = map[int]float64{
+	0: 0,
+	1: 100,
+	2: 300,
+	3: 900,
+	4: 2700,
+	5: 8100,
+}
+
 func (p *Points) Calculate(activityType int, activityDuration uint) {
 	var multiplier = types[activityType]
 	act := activityDuration / 100000
@@ -36,9 +45,9 @@ func (p *Points) Calculate(activityType int, activityDuration uint) {
 		points = multiplier
 	}
 
-	p.Value = points
-}
+	p.Value += points
 
+<<<<<<< HEAD
 func GetLastSession(authCode string, lastTimeMS int64) ([]Session, error) {
 	conf := GetConfig()
 
@@ -81,4 +90,13 @@ type Session struct {
 	EndTimeMillis      int    `json:"endTimeMillis"`
 	ModifiedTimeMillis int    `json:"modifiedTimeMillis"`
 	ActivityType       int    `json:"activtyType"`
+=======
+	//Смята левала
+	for i := 1; i <= len(levels); i++ {
+		if p.Value < levels[i] && p.Value > levels[i-1] {
+			p.Level = i
+		}
+	}
+
+>>>>>>> 1a1e57b2f7233ebf26a1d695368fc0168805049a
 }
