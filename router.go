@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/gorilla/mux"
 	"github.com/rs/zerolog/log"
 	"github.com/trayanr/FEST2019/controller"
-	"net/http"
-	"os"
 )
 
 var port = os.Getenv("PORT")
@@ -15,8 +16,11 @@ func routes(r *mux.Router) {
 
 	//ROUTE-ОВЕТЕ СЕ АДДВАТ ТУК :)
 
-	addHandler(r, "/", controllers.GetHome).Methods("GET")
+	addHandler(r, "/", controllers.GetWelcome).Methods("GET")
+	addHandler(r, "/home", controllers.GetHome).Methods("GET")
+	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
+	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
 
 }
 

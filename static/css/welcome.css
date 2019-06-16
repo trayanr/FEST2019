@@ -1,0 +1,16 @@
+.background{
+    background-size: cover;
+    position:fixed;
+    width: 100%;
+    height:110%;
+    z-index: -100000;
+    /*padding-bottom: 100px;*/
+    background-image: url('/static/images/welcome.jpg');
+}
+
+.gradient{
+    background: linear-gradient(60deg, rgba(244, 117, 57, 0.85), rgba(33, 150, 243, 0.8));
+    height: 100%;
+    z-index: -100000;
+}
+

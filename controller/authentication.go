@@ -61,7 +61,8 @@ func RegisterAndLogin(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func oAuthCallback(w http.ResponseWriter, r *http.Request) {
+func OAuthCallback(w http.ResponseWriter, r *http.Request) {
+	// log.Println("wtf we")
 
 	authCode := r.URL.Query().Get("code")
 	log.Println(authCode)
@@ -92,6 +93,13 @@ func oAuthCallback(w http.ResponseWriter, r *http.Request) {
 	for _, d := range ds {
 		GetForThisDay(d, tok)
 	}
+	// w.Write([]byte("test"))
+}
+
+func OAuthPost(w http.ResponseWriter, r *http.Request) {
+	url := GetConfigURL()
+	log.Println("test??", url.URL)
+	http.Redirect(w, r, url.URL, http.StatusSeeOther)
 }
 
 func GetConfigURL() ConfigURL {
