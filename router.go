@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"net/http"
 	"os"
 
@@ -18,8 +19,9 @@ func routes(r *mux.Router) {
 
 	addHandler(r, "/", controllers.GetWelcome).Methods("GET")
 	addHandler(r, "/home", controllers.GetHome).Methods("GET")
-	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
+	addHandler(r, "/profile", controllers.GetProfile).Methods("GET")
 	addHandler(r, "/api/login", controllers.Login).Methods("GET", "POST")
+	addHandler(r, "/api/oauthPost", controllers.OAuthPost).Methods("POST", "GET")
 	addHandler(r, "/api/oauth", controllers.OAuthCallback).Methods("GET", "POST")
 	addHandler(r, "/api/register", controllers.Register).Methods("POST")
 
@@ -45,4 +47,9 @@ func main() {
 
 func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route {
 	return r.HandleFunc(path, handler) //.Host(conf.Subdomain + "." + conf.Host)
+}
+
+func startTimer() {
+	// timer1 := time.
+
 }

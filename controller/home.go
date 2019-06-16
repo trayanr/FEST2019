@@ -20,6 +20,12 @@ func GetWelcome(w http.ResponseWriter, r *http.Request) {
 //GetLogin returns home page (на логнат потребител)
 func GetHome(w http.ResponseWriter, r *http.Request) {
 	renderer := R.HTML("home.html")
+	renderer.Render(w, map[string]interface{}{})
+}
+
+//GetLogin returns home page (на логнат потребител)
+func GetProfile(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("profile.html")
 	yo := renderer.Render(w, map[string]interface{}{})
 	fmt.Println(yo.Error())
 }

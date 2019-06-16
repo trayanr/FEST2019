@@ -19,7 +19,7 @@
 <div class="container">
     <%= yield %>
 </div>
-
-<%= javascriptTag("application.js") %>
+<script src="/static/js/vue.js"></script>
+<%=contentOf("vueComponents")%>
 </body>
 </html>

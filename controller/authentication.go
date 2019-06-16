@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gorilla/securecookie"
+	//	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
 	"github.com/trayanr/FEST2019/drivers"
 	"github.com/trayanr/FEST2019/models"
 )
 
-var store = sessions.NewCookieStore(securecookie.GenerateRandomKey(32))
+var store = sessions.NewCookieStore([]byte("pe6o1234pe6o1234pe6o1234pe6o1234"))
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
@@ -22,32 +22,34 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	body := models.User{}
 	decoder.Decode(&body)
-	err := body.HashPassword()
-	if err != nil {
-		//
-		log.Println("hash error")
-
-	}
 	user, err := drivers.GetUserByCredentials(body.Username, body.Password)
 	if err != nil {
 		//
 		log.Println("driver err", err)
+		w.WriteHeader(406)
+		return
 	}
 	session, err := store.Get(r, "Auth")
 	if err != nil {
 		//
 		log.Println("store err", err)
+		w.WriteHeader(406)
+		return
 	}
 	user, err = drivers.GetUserByCredentials(body.Username, body.Password)
 	if err != nil {
 		//
 		log.Println("session err", err)
+		w.WriteHeader(406)
+		return
 	}
 	session.Values["auth"] = true
 	session.Values["id"] = user.ID
 	err = session.Save(r, w)
 	if err != nil {
 		log.Println("session save err", err)
+		w.WriteHeader(406)
+		return
 	}
 
 }
@@ -90,7 +92,7 @@ func OAuthCallback(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// asdasd
 	}
-	w.Write([]byte("Hello"))
+	http.Redirect(w, r, "../home", http.StatusSeeOther)
 
 	// conf := models.GetConfig()
 
@@ -146,4 +148,27 @@ func GetConfigURL(id int) ConfigURL {
 
 type ConfigURL struct {
 	URL string `json:"url"`
+}
+
+func retrunErr(e json.Encoder, err error) {
+	result := map[string]string{
+		"error": err.Error(),
+	}
+	e.Encode(result)
+}
+
+func GetProfileData(w http.ResponseWriter, r *http.Request) {
+	session, err := store.Get(r, "Auth")
+	if err != nil {
+		w.WriteHeader(406)
+	}
+	id := session.Values["id"].(int)
+	user, err := drivers.GetUserByID(id)
+	if err != nil {
+		w.WriteHeader(406)
+	}
+	encoder := json.NewEncoder(w)
+	encoder.SetIndent("", "\t")
+	encoder.Encode(user)
+
 }
