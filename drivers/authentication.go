@@ -20,7 +20,7 @@ func GetUserByCredentials(username, password string) (models.User, error) {
 		log.Println(errLoadDotSQLFile, ":", err)
 		return models.User{}, errLoadDotSQLFile
 	}
-	row, err := dot.QueryRow(db, "get-user-by-username-passwordhash", username, password)
+	row, err := dot.Query(db, "get-user-by-username-passwordhash", username, password)
 	if err != nil {
 		log.Println(errSQL, ":", err)
 		return models.User{}, errSQL

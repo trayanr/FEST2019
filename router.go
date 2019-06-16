@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"time"
 
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/rs/zerolog/log"
-	"github.com/trayanr/FEST2019/controller"
+	controllers "github.com/trayanr/FEST2019/controller"
 )
 
 var port = os.Getenv("PORT")
@@ -41,7 +42,8 @@ func main() {
 	if err != nil {
 		log.Print(err.Error())
 	}
-
+	log
+	startTimer()
 }
 
 func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route {
@@ -49,6 +51,9 @@ func addHandler(r *mux.Router, path string, handler http.HandlerFunc) *mux.Route
 }
 
 func startTimer() {
-	// timer1 := time.
-
+	log.Println("test")
+	timer := time.NewTicker(time.Second * 40)
+	for v := range timer.C {
+		log.Println(v)
+	}
 }
