@@ -23,6 +23,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	body := models.User{}
 	decoder.Decode(&body)
+
 	err := body.HashPassword()
 	if err != nil {
 		//

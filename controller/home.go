@@ -26,8 +26,20 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 //GetLogin returns home page (на логнат потребител)
 func GetProfile(w http.ResponseWriter, r *http.Request) {
 	renderer := R.HTML("profile.html")
-	yo := renderer.Render(w, map[string]interface{}{})
-	fmt.Println(yo.Error())
+	renderer.Render(w, map[string]interface{}{})
+
+}
+
+//GetAwards връща страницата със награди за даден user
+func GetAwards(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("awards.html")
+	renderer.Render(w, map[string]interface{}{})
+}
+
+//GetContests returns страницата със всички състезания
+func GetContests(w http.ResponseWriter, r *http.Request) {
+	renderer := R.HTML("contests.html")
+	renderer.Render(w, map[string]interface{}{})
 }
 
 func GetForThisDay(ds DataSource, token *oauth2.Token) {

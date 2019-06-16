@@ -43,9 +43,16 @@ new Vue({
                 });
 
             //За count down-a
-            $('.countdown').FlipClock({
-
+            let clock = $('.countdown').FlipClock(moment().endOf('day').toDate(), {
+                countdown:true,
+                setFaceValue(){
+                    return 200
+                   // return
+                }
             });
+
+            clock.setFaceValue(300)
+
 
         },100);
 
